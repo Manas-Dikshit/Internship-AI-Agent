@@ -1,0 +1,15 @@
+openai>=1.0.0
+requests
+google-api-python-client
+google-search-results
+beautifulsoup4
+pandas
+schedule
+secure-smtplib
+email-validator
+langchain
+tqdm
+python-dotenv
+pyyaml
+fake-useragent
+pypdf

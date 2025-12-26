@@ -1,0 +1,131 @@
+# ============================================================
+# Internship AI Agent - Configuration File
+# ============================================================
+# This configuration defines search behavior, email generation,
+# sending settings, rate limits, and safety filters.
+# ============================================================
+
+# ------------------------------------------------------------
+# 🔍 SEARCH CONFIGURATION
+# ------------------------------------------------------------
+search:
+  keywords:
+    - "Software Engineering Internship"
+    - "Java Developer Internship"
+    - "Backend Developer Internship"
+    - "Java Software Engineer Intern"
+  max_results: 30  # Maximum listings per source per run
+  engines:
+    - "serpapi"    # SerpAPI (Google Search wrapper)
+    - "google"     # Google Custom Search API
+    - "wellfound"  # Wellfound startup job board
+    - "indeed"     # Indeed internship listings
+  filters:
+    remote_only: true          # True → only remote or hybrid internships
+    locations: ["India", "USA", "Remote"]
+    company_exclude_keywords:  # skip spammy or duplicate domains
+      - "consulting"
+      - "recruitment"
+      - "placement"
+  retry_attempts: 3            # API retry count if a query fails
+  delay_seconds: 2             # Wait time between API calls
+
+# ------------------------------------------------------------
+# 🧠 EMAIL GENERATION (AI PROMPT SETTINGS)
+# ------------------------------------------------------------
+email_generation:
+  model: "gpt-4o-mini"         # Use GPT-4o-mini for efficiency
+  temperature: 0.7             # Creativity balance (0.7 = moderately creative)
+  max_tokens: 600              # Max output length
+  include_resume_summary: true # Append short summary of your resume (optional)
+  system_prompt: |
+    You are a professional job applicant writing concise, polite, and 
+    personalized cold emails to apply for internships. Maintain a 
+    confident, friendly tone. Never exaggerate or include false claims.
+  template: |
+    Subject: Application for {role} Internship at {company}
+
+    Dear {recipient_name or "Hiring Team"},
+
+    I hope this message finds you well. I am reaching out to express my 
+    interest in the {role} position at {company}. With hands-on experience 
+    in Java, backend APIs, and software engineering fundamentals, I am 
+    eager to contribute to your team’s ongoing projects and learn from 
+    experienced developers.
+
+    [Generated personalized paragraph based on company/role/resume summary here]
+
+    I have attached my resume for your consideration and would be delighted 
+    to discuss how my skills align with {company}’s goals.
+
+    Best regards,  
+    Manas Ranjan Dikshit
+    https://www.linkedin.com/in/manas-ranjan-dikshit
+    [Your Phone Number]
+
+# ------------------------------------------------------------
+# 📤 EMAIL SENDING SETTINGS
+# ------------------------------------------------------------
+email_sending:
+  method: "smtp"               # or "gmail_api"
+  smtp_server: "smtp.gmail.com"
+  smtp_port: 587
+  sender_email: "${GMAIL_USER}"  # Loaded from .env
+  sender_name: "Manas Ranjan Dikshit"
+  attachment_path: "data/resume.pdf"
+  rate_limit_per_day: 20       # Respect anti-spam and ethical emailing limits
+  delay_between_emails: 60     # seconds between each email (for safety)
+  retry_on_fail: 2             # Retry attempts if sending fails
+  signature: |
+    --
+    Manas Ranjan Dikshit
+    Software Engineering Student  
+    https://www.linkedin.com/in/manas-ranjan-dikshit
+    https://github.com/Manas-Dikshit
+    [Your Phone Number]
+
+# ------------------------------------------------------------
+# 🛡️ SAFETY & VALIDATION SETTINGS
+# ------------------------------------------------------------
+safety:
+  allowed_domains:
+    - "careers@"
+    - "hr@"
+    - "jobs@"
+    - "contact@"
+    - "recruiting@"
+    - "intern@"
+    - "hello@"
+    - "info@"
+    - "team@"
+    - "talent@"
+  excluded_domains:
+    - "noreply@"
+    - "donotreply@"
+    - "support@"
+    - "help@"
+  max_email_per_domain: 1      # Avoid sending multiple emails to same company
+  validate_email: true         # Use email-validator library
+  compliance:
+    include_opt_out: true      # Always allow the recipient to decline further contact
+    comply_with_gdpr: true
+    comply_with_can_spam: true
+
+# ------------------------------------------------------------
+# 📊 LOGGING & OUTPUT
+# ------------------------------------------------------------
+logging:
+  level: "INFO"                # Options: DEBUG, INFO, WARNING, ERROR
+  file_path: "logs/app.log"
+  sent_log: "data/sent_log.csv"
+  error_log: "logs/error.log"
+  rotate_after_kb: 1024        # rotate logs every ~1MB
+
+# ------------------------------------------------------------
+# ⚙️ MISC / SYSTEM
+# ------------------------------------------------------------
+system:
+  timezone: "Asia/Kolkata"
+  database_path: "data/companies.db"
+  output_job_listings: "data/job_listings.json"
+  backup_interval_days: 3

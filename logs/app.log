@@ -1,0 +1,79 @@
+2025-12-27 00:36:00,423 - root - INFO - Logging initialized.
+2025-12-27 00:36:00,423 - __main__ - INFO - Starting Internship Application Agent...
+2025-12-27 00:36:00,865 - src.search_agent - INFO - Searching for: Software Engineering Internship
+2025-12-27 00:36:03,405 - src.search_agent - ERROR - SerpAPI Error: Google hasn't returned any results for this query.
+2025-12-27 00:36:03,405 - src.search_agent - INFO - Searching for: Java Developer Internship
+2025-12-27 00:36:07,307 - src.search_agent - ERROR - SerpAPI Error: Google hasn't returned any results for this query.
+2025-12-27 00:36:07,308 - src.search_agent - INFO - Searching for: Backend Developer Internship
+2025-12-27 00:36:09,790 - src.search_agent - INFO - Found 10 raw jobs for query 'Backend Developer Internship'
+2025-12-27 00:36:09,795 - src.search_agent - INFO - Filtered down to 3 valid jobs.
+2025-12-27 00:36:09,795 - src.search_agent - INFO - Searching for: Java Software Engineer Intern
+2025-12-27 00:36:12,022 - src.search_agent - INFO - Found 10 raw jobs for query 'Java Software Engineer Intern'
+2025-12-27 00:36:12,023 - src.search_agent - INFO - Filtered down to 2 valid jobs.
+2025-12-27 00:36:12,024 - __main__ - INFO - Total jobs found: 5
+2025-12-27 00:36:12,092 - __main__ - INFO - Processing Remote Back-End Developer Intern (Node.js) at BottleUp...
+2025-12-27 00:36:12,095 - src.parser - INFO - Scraping URL: https://wellfound.com/jobs/99788-remote-back-end-developer-intern-node-js?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:12,623 - src.parser - ERROR - Error scraping https://wellfound.com/jobs/99788-remote-back-end-developer-intern-node-js?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic: 403 Client Error: Forbidden for url: https://wellfound.com/jobs/99788-remote-back-end-developer-intern-node-js?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:12,624 - __main__ - INFO - No valid contact email found for BottleUp. Skipping email generation.
+2025-12-27 00:36:12,625 - __main__ - INFO - Processing Backend Developer Winter/Spring Intern at Eulerity...
+2025-12-27 00:36:12,629 - src.parser - INFO - Scraping URL: https://www.ziprecruiter.com/c/Eulerity/Job/Backend-Developer-Winter-Spring-Intern/-in-New-York,NY?jid=a822c7f6a6b367a3&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:13,117 - src.parser - ERROR - Error scraping https://www.ziprecruiter.com/c/Eulerity/Job/Backend-Developer-Winter-Spring-Intern/-in-New-York,NY?jid=a822c7f6a6b367a3&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic: 403 Client Error: Forbidden for url: https://www.ziprecruiter.com/c/Eulerity/Job/Backend-Developer-Winter-Spring-Intern/-in-New-York,NY?jid=a822c7f6a6b367a3&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:13,119 - __main__ - INFO - No valid contact email found for Eulerity. Skipping email generation.
+2025-12-27 00:36:13,120 - __main__ - INFO - Processing Frontend and Backend Developer Intern at Cyranix...
+2025-12-27 00:36:13,126 - src.parser - INFO - Scraping URL: https://www.getusajob.com/jobs/view/frontend-backend-developer-intern?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:15,774 - src.parser - INFO - Found 1 emails on https://www.getusajob.com/jobs/view/frontend-backend-developer-intern?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:15,785 - __main__ - INFO - No valid contact email found for Cyranix. Skipping email generation.
+2025-12-27 00:36:15,786 - __main__ - INFO - Processing Software Engineer, Full-Stack (Full Time and Intern) at Fitnescity Health...
+2025-12-27 00:36:15,789 - src.parser - INFO - Scraping URL: https://www.linkedin.com/jobs/view/software-engineer-full-stack-full-time-and-intern-at-fitnescity-health-4343777928?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:17,313 - src.parser - INFO - Found 0 emails on https://www.linkedin.com/jobs/view/software-engineer-full-stack-full-time-and-intern-at-fitnescity-health-4343777928?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:17,314 - __main__ - INFO - No valid contact email found for Fitnescity Health. Skipping email generation.
+2025-12-27 00:36:17,315 - __main__ - INFO - Processing 2025 Intern - Raytheon C++/Java Software Engineer (Onsite) at RTX...
+2025-12-27 00:36:17,317 - src.parser - INFO - Scraping URL: https://www.tealhq.com/job/2025-intern-raytheon-c-java-software-engineer-onsite_08b39cba-89cc-4ab0-8dad-c97bdfbcdd18?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:18,127 - src.parser - ERROR - Error scraping https://www.tealhq.com/job/2025-intern-raytheon-c-java-software-engineer-onsite_08b39cba-89cc-4ab0-8dad-c97bdfbcdd18?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic: 403 Client Error: Forbidden for url: https://www.tealhq.com/job/2025-intern-raytheon-c-java-software-engineer-onsite_08b39cba-89cc-4ab0-8dad-c97bdfbcdd18?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:36:18,129 - __main__ - INFO - No valid contact email found for RTX. Skipping email generation.
+2025-12-27 00:36:18,129 - __main__ - INFO - Workflow completed.
+2025-12-27 00:37:59,694 - root - INFO - Logging initialized.
+2025-12-27 00:37:59,695 - __main__ - INFO - Starting Internship Application Agent...
+2025-12-27 00:38:00,024 - src.search_agent - INFO - Searching for: Software Engineering Internship
+2025-12-27 00:38:01,269 - src.search_agent - ERROR - SerpAPI Error: Google hasn't returned any results for this query.
+2025-12-27 00:38:01,269 - src.search_agent - INFO - Searching for: Java Developer Internship
+2025-12-27 00:38:01,770 - src.search_agent - ERROR - SerpAPI Error: Google hasn't returned any results for this query.
+2025-12-27 00:38:01,771 - src.search_agent - INFO - Searching for: Backend Developer Internship
+2025-12-27 00:38:03,510 - src.search_agent - INFO - Found 10 raw jobs for query 'Backend Developer Internship'
+2025-12-27 00:38:03,511 - src.search_agent - INFO - Filtered down to 3 valid jobs.
+2025-12-27 00:38:03,512 - src.search_agent - INFO - Searching for: Java Software Engineer Intern
+2025-12-27 00:38:04,015 - src.search_agent - INFO - Found 10 raw jobs for query 'Java Software Engineer Intern'
+2025-12-27 00:38:04,016 - src.search_agent - INFO - Filtered down to 2 valid jobs.
+2025-12-27 00:38:04,016 - __main__ - INFO - Total jobs found: 5
+2025-12-27 00:38:04,066 - __main__ - INFO - Processing Remote Back-End Developer Intern (Node.js) at BottleUp...
+2025-12-27 00:38:04,070 - src.parser - INFO - Scraping URL: https://wellfound.com/jobs/99788-remote-back-end-developer-intern-node-js?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:05,461 - src.parser - INFO - No emails found on main page. Looking for Contact/Careers links...
+2025-12-27 00:38:05,462 - src.parser - INFO - Following link: https://wellfound.com/company/bottleup
+2025-12-27 00:38:06,008 - src.parser - INFO - Following link: https://wellfound.com
+2025-12-27 00:38:06,560 - src.parser - INFO - Found 0 total emails for https://wellfound.com/jobs/99788-remote-back-end-developer-intern-node-js?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:06,564 - __main__ - INFO - No valid contact email found for BottleUp. Skipping email generation.
+2025-12-27 00:38:06,565 - __main__ - INFO - Processing Backend Developer Winter/Spring Intern at Eulerity...
+2025-12-27 00:38:06,572 - src.parser - INFO - Scraping URL: https://www.ziprecruiter.com/c/Eulerity/Job/Backend-Developer-Winter-Spring-Intern/-in-New-York,NY?jid=a822c7f6a6b367a3&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:07,120 - src.parser - ERROR - Error scraping https://www.ziprecruiter.com/c/Eulerity/Job/Backend-Developer-Winter-Spring-Intern/-in-New-York,NY?jid=a822c7f6a6b367a3&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic: 403 Client Error: Forbidden for url: https://www.ziprecruiter.com/c/Eulerity/Job/Backend-Developer-Winter-Spring-Intern/-in-New-York,NY?jid=a822c7f6a6b367a3&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:07,122 - __main__ - INFO - No valid contact email found for Eulerity. Skipping email generation.
+2025-12-27 00:38:07,122 - __main__ - INFO - Processing Frontend and Backend Developer Intern at Cyranix...
+2025-12-27 00:38:07,126 - src.parser - INFO - Scraping URL: https://www.getusajob.com/jobs/view/frontend-backend-developer-intern?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:08,636 - src.parser - INFO - Found 1 total emails for https://www.getusajob.com/jobs/view/frontend-backend-developer-intern?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:08,640 - __main__ - INFO - Found target email: info@getusajob.com
+2025-12-27 00:38:08,641 - src.email_agent - INFO - Generating email for Frontend and Backend Developer Intern at Cyranix
+2025-12-27 00:38:18,426 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 00:38:18,454 - src.mailer - INFO - Connecting to SMTP server smtp.gmail.com...
+2025-12-27 00:38:27,393 - src.mailer - INFO - Email sent successfully to info@getusajob.com
+2025-12-27 00:38:27,446 - __main__ - INFO - Emails sent today: 1/19
+2025-12-27 00:38:27,447 - __main__ - INFO - Processing Software Engineer, Full-Stack (Full Time and Intern) at Fitnescity Health...
+2025-12-27 00:38:27,452 - src.parser - INFO - Scraping URL: https://www.linkedin.com/jobs/view/software-engineer-full-stack-full-time-and-intern-at-fitnescity-health-4343777928?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:29,078 - src.parser - INFO - No emails found on main page. Looking for Contact/Careers links...
+2025-12-27 00:38:29,080 - src.parser - INFO - Following link: https://about.linkedin.com?trk=p_jobs_guest_details_footer-about
+2025-12-27 00:38:31,426 - src.parser - INFO - Found 0 total emails for https://www.linkedin.com/jobs/view/software-engineer-full-stack-full-time-and-intern-at-fitnescity-health-4343777928?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:31,427 - __main__ - INFO - No valid contact email found for Fitnescity Health. Skipping email generation.
+2025-12-27 00:38:31,430 - __main__ - INFO - Emails sent today: 1/19
+2025-12-27 00:38:31,431 - __main__ - INFO - Processing 2025 Intern - Raytheon C++/Java Software Engineer (Onsite) at RTX...
+2025-12-27 00:38:31,434 - src.parser - INFO - Scraping URL: https://www.tealhq.com/job/2025-intern-raytheon-c-java-software-engineer-onsite_08b39cba-89cc-4ab0-8dad-c97bdfbcdd18?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:31,960 - src.parser - ERROR - Error scraping https://www.tealhq.com/job/2025-intern-raytheon-c-java-software-engineer-onsite_08b39cba-89cc-4ab0-8dad-c97bdfbcdd18?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic: 403 Client Error: Forbidden for url: https://www.tealhq.com/job/2025-intern-raytheon-c-java-software-engineer-onsite_08b39cba-89cc-4ab0-8dad-c97bdfbcdd18?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic
+2025-12-27 00:38:31,962 - __main__ - INFO - No valid contact email found for RTX. Skipping email generation.
+2025-12-27 00:38:31,962 - __main__ - INFO - Workflow completed.
