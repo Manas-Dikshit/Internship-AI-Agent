@@ -26,21 +26,25 @@ class EmailGenerator:
             resume_context = "Resume attached."
 
         prompt = f"""
-        Task: Write a cold email applying for an internship.
+        Task: Write a highly personalized, professional cold email applying for an internship.
         
-        Job Details:
+        Target:
         Role: {role}
         Company: {company}
-        Description: {job_details.get("description", "N/A")[:500]}...
+        Job Description Snippet: "{job_details.get("description", "N/A")[:600]}..."
         
-        {resume_context}
+        My Profile (Resume Excerpt):
+        "{resume_text[:2500]}"
         
         Instructions:
-        - Use the following template structure but personalize the content:
+        1. **Tone**: Professional, confident, enthusiastic, yet concise. Avoid generic fluff.
+        2. **Structure**: Follow the template below strictly for layout, but fill the body with specific details connecting my skills to their requirements.
+        3. **Customization**: Mention specific technologies from the job description that I also have in my resume.
+        4. **Subject Line**: If the template includes a subject line, optimize it to be catchy (e.g., "Java Developer Intern Application - [My Name]").
+        5. **No Placeholders**: Do NOT leave any brackets like [Insert Skill] or [Date]. Fill them based on the data provided. If unknown, use a generic professional alternative.
+        
+        Template:
         {template}
-        - Keep it professional, concise, and polite.
-        - Highlight relevant skills from the resume that match the job description.
-        - Ensure placeholders like {{recipient_name}} are handled or genericized if unknown.
         """
 
         try:

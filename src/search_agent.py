@@ -72,6 +72,31 @@ class SearchAgent:
                     return []
         return []
 
+    def search_google_general(self, query: str, num_results: int = 3) -> List[str]:
+        """Performs a general Google Search to find company career pages or contacts."""
+        if not self.api_key:
+            return []
+
+        logger.info(f"Performing general search for: {query}")
+        params = {
+            "engine": "google",
+            "q": query,
+            "api_key": self.api_key,
+            "num": num_results
+        }
+
+        try:
+            search = GoogleSearch(params)
+            results = search.get_dict()
+            organic_results = results.get("organic_results", [])
+            
+            links = [res.get("link") for res in organic_results if res.get("link")]
+            logger.info(f"Found {len(links)} general links for '{query}'")
+            return links
+        except Exception as e:
+            logger.error(f"Error during general search: {e}")
+            return []
+
     def _is_valid_job(self, job: Dict[str, Any]) -> bool:
         """Filters jobs based on configuration."""
         company = job.get("company", "").lower()

@@ -5,7 +5,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from datetime import datetime, date
 
-from src.utils import setup_logging, filter_emails, extract_text_from_pdf
+from src.utils import setup_logging, filter_emails, extract_text_from_pdf, get_domain_from_url
 from src.search_agent import SearchAgent
 from src.parser import WebParser
 from src.email_agent import EmailGenerator
@@ -106,15 +106,40 @@ def main():
         title = job.get("title")
         link = job.get("link") or job.get("apply_link")
 
-        if not link:
-            logger.warning(f"No link found for {title} at {company}, skipping.")
-            continue
-
         logger.info(f"Processing {title} at {company}...")
 
         # 3. Find Contact Email
+        # Strategy A: Check the job listing URL
         emails = parser.extract_emails_from_url(link)
-        valid_emails = filter_emails(emails, config["safety"]["allowed_domains"])
+        
+        # Strategy B: If no emails, try a general "Company careers" search
+        if not emails:
+            logger.info(f"No emails on job page. Trying general search for {company} careers...")
+            general_links = search_agent.search_google_general(f"{company} careers contact email")
+            for g_link in general_links[:2]: # Check top 2 results
+                # If we are visiting a company site, trust its domain
+                g_domain = get_domain_from_url(g_link)
+                if g_domain and g_domain not in ["linkedin.com", "indeed.com", "wellfound.com", "glassdoor.com", "ziprecruiter.com", "facebook.com", "twitter.com", "instagram.com"]:
+                    company_domain = g_domain
+                    logger.info(f"Inferred company domain from general search: {company_domain}")
+                
+                found = parser.extract_emails_from_url(g_link)
+                if found:
+                    emails.extend(found)
+                    break # Stop if we found something
+        
+        # Filter emails with domain matching if possible
+        # We don't easily know the company's official domain without more complex logic, 
+        # but we can try to guess it from the job link if it's a direct company link.
+        company_domain = None
+        if link:
+            domain = get_domain_from_url(link)
+            # Avoid generic job boards
+            if domain and domain not in ["linkedin.com", "indeed.com", "wellfound.com", "glassdoor.com", "ziprecruiter.com"]:
+                company_domain = domain
+                logger.info(f" inferred company domain: {company_domain}")
+
+        valid_emails = filter_emails(emails, config["safety"]["allowed_domains"], company_domain=company_domain)
 
         if not valid_emails:
             logger.info(f"No valid contact email found for {company}. Skipping email generation.")
@@ -135,14 +160,7 @@ def main():
             continue
 
         # 5. Send Email
-        # Personalize subject if needed, or use template subject if it was part of the body generation (usually separate)
-        # The config template has "Subject: ..." inside it. 
-        # We need to parse the subject from the generated body or generate it separately.
-        # For now, we'll assume the generated body contains the subject line or we strip it.
-        # A common pattern is to have the LLM generate the whole email including subject.
-        
-        subject = f"Application for {title} - [Your Name]" 
-        # If the generated content starts with "Subject:", extract it.
+        subject = f"Application for {title} - Manas Ranjan Dikshit" 
         if email_body.startswith("Subject:"):
             lines = email_body.split("\n")
             subject = lines[0].replace("Subject:", "").strip()
@@ -154,7 +172,7 @@ def main():
             body=email_body,
             attachment_path=resume_path
         )
-
+        
         status = "Sent" if success else "Failed"
         
         log_entry = {
