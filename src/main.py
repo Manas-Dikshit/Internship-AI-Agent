@@ -1,4 +1,9 @@
 import os
+import sys
+
+# Add project root to path to allow imports from 'src'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import yaml
 import logging
 import pandas as pd
@@ -43,6 +48,37 @@ def check_rate_limit(log_file: str, limit: int) -> bool:
     except Exception as e:
         logger.error(f"Error checking rate limit: {e}")
         return True # Fail open or closed? Open for now, but log error.
+
+def check_recipient_cooldown(log_file: str, recipient_email: str, days: int = 30) -> bool:
+    """Checks if an email was sent to the recipient within the last 'days' days."""
+    if not os.path.exists(log_file):
+        return True # No log file, so safe to send
+    
+    try:
+        df = pd.read_csv(log_file)
+        if "email_sent_to" not in df.columns or "timestamp" not in df.columns:
+            return True
+            
+        df["timestamp"] = pd.to_datetime(df["timestamp"])
+        
+        # Filter for this recipient
+        recipient_emails = df[df["email_sent_to"] == recipient_email]
+        
+        if recipient_emails.empty:
+            return True
+            
+        # Get the last sent time
+        last_sent = recipient_emails["timestamp"].max()
+        
+        # Check if it's within the cooldown period
+        if (datetime.now() - last_sent).days < days:
+            logger.info(f"Skipping {recipient_email}: Last email sent on {last_sent}, within {days} days cooldown.")
+            return False
+            
+        return True
+    except Exception as e:
+        logger.error(f"Error checking recipient cooldown: {e}")
+        return True # Fail open
 
 def main():
     logger.info("Starting Internship Application Agent...")
@@ -147,6 +183,9 @@ def main():
 
         target_email = valid_emails[0] # Pick the first one
         logger.info(f"Found target email: {target_email}")
+
+        if not check_recipient_cooldown(sent_log_path, target_email):
+            continue
 
         # 4. Generate Email
         email_body = email_generator.generate_email(
